@@ -1,1 +1,19 @@
+# createOrder
+## Create Order [/hotel/v1.0/order]
+The `Create Order` API allows you to create a new <@ product_order_popup @> for each hotel booking.When you create an order using the Create Order` API, the system generates an order ID and returns it in the API response. You can use the order ID to perform additional functions, such as to retrieve order details, and to update the confirmation and cancellation details for the order.  
 
+### Create Order [POST]
+    
++ Request createOrderReq (application/json)
+
+    + Headers
+      Content-Type: application/json
+      cnx-correlationid: hotel-stage-doc-497c-b2e5-2e40b26a9bc2
+      cnx-tenantid: 2ql3bti6juo
+      cnx-userip: 127.0.0.1
+      Accept-Encoding: gzip, deflate
+    
+    + Attributes (createOrderRequest)
+      
++ Response 200 (application/json)
+    + Attributes (createOrderResponse)
