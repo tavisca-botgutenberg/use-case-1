@@ -1,0 +1,508 @@
+## searchQueryResp
++ searchQuery (searchQueryRespInfo) - Contains the list of search criteria that is used to search for hotels. The `searchQuery` object must contain the room occupancy details, the stay period, and the information about the region where the <@ customer_popup @> wants to search for the hotels. 
+
+## searchQueryRespRadial
++ searchQuery (searchQueryRespInfoRadial) - Contains the list of search criteria that is used to search for hotels. The `searchQuery` object contains the room occupancy details, the stay period, the hotel preferences (such as the hotel rate, the star rating, and the hotel chain), and the information about the region where the <@ customer_popup @> wants to search for the hotels.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>Depending on the type of search (<a href="../search#radial" target="_blank">radial</a>, <a href="../search#rectangular" target="_blank">rectangular</a> or <a href="../room-list#standalone" target="_blank">stand-alone room search</a>) that you perform, the information about the search region within the `searchQuery` object is different.</li><li>If you performed a <a href="../search#radial" target="_blank">radial search</a>, then the `searchQuery/bounds` object contains the geographic coordinates of the center point and the radius within which the search for hotels is requested.<br><@ searchrequestradial @></li><li>If you performed a <a href="../search#rectangular" target="_blank">rectangular search</a>, then the `searchQuery/bounds` object contains the geographic coordinates for the rectangular region within which the search for hotels is requested.<br><@ searchrequestrectangular @></li><li>If you performed a <a href="../search#rectangular" target="_blank">stand-alone room search</a>, then the `searchQuery` object contains the hotel ID for which the rooms list is requested.<br><@ searchrequeststandalone @>.</li></ul>
+
+## programIdResp
++ programId: `docs` - Unique ID for the <@ loyalty_program_popup @>.
+
+## hotelRoomRetrieveInfo
++ hotel (hotelRoomRetrieve) - Contains information about the hotel, including its content attributes (such as the hotel's <@ amenitiessmall @>, policies, or images). The hotel content attributes are obtained from the content provider.  
+
+## hotelRoomRetrieve
++ include hotelId
++ include hotelname
++ include hotelContentProductDetails
++ rate (ratesRoomsListPrice) - Contains the room rate details, such as the per room rate component breakup, board basis, offers, discounts, and the available purchase options. 
++ room (roomsRoomList) - Contains the list of information about the room, such as the room type and the available room count. 
++ include roomOccupancyRetrieve
+
+## searchQueryRespInfoRadial
++ hotelId: `13652` (string) - Unique hotel ID that identifies a specific hotel for which you want to retrieve information. Note that this field is returned only in case of <a href="../room-list#standalone" target="_blank">Stand-Alone Room Search</a>. 
++ roomOccupancy (roomOccupancyResp) - Contains the list of room occupancy objects that contain the `occupants` information for the room. Note that there must be at least one adult per room.
++ stayPeriod (stayPeriodResp) - Contains information about when the guest wants to check in and check out of the hotel. This indicates the complete hotel stay duration. The total `stayPeriod` must be less than or equal to 90 days. Note that the stay period limitation is supplier-specific.
++ filters (filtersResp) - Contains filters to narrow down the hotel search results. The search results include only those hotels that match all the filter criteria specified. Note that all hotel content attributes, such as the hotel's amenities and star rating, are obtained from the content provider. 
++ travellerCountryCodeOfResidence: `US`(string) - 2-character ISO code that indicates the traveler's country of residence.
++ travellerNationalityCode: `US` (string) - 2-character ISO code that indicates the traveler's nationality. 
++ bounds (boundsRadialResp) - Contains information about the region where the customer wants to search for hotels.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>Depending on the type of search (<a href="../search#radial" target="_blank">radial</a> or <a href="../search#rectangular" target="_blank">rectangular</a>) that you perform, the information about the search region within the `bounds` object is different.</li><li>If you performed a <a href="../search#radial" target="_blank">radial hotel search</a>, then the `bounds` object contains the geographic coordinates of the center point and the radius within which the search for hotels is performed.<br><@ boundsradial @></li><li>If you performed a <a href="../search#rectangular" target="_blank">rectangular hotel search</a>, then the `bounds` object contains the geographic coordinates for the rectangular region within which the search for hotels is performed.<br><@ boundsrectangular @></li></ul>
++ includeHotelsWithoutRates: false (boolean) - Indicates whether you want to search only for those hotels that have the availability or room rate information available from the supplier. If you set the `includeHotelsWithoutRates` field to `true`, the search results include hotels regardless of the availability or room rate information.
++ include relevanceCriteria
+
+## searchQueryRespInfoRectangular
++ roomOccupancy (roomOccupancyResp) - Contains the list of room occupancy objects that contain the `occupants` information for the room. You can search for hotels that can accommodate up to 8 guests in a room (occupancy) in one single call. This limitation can vary per supplier. Note that there must be at least one adult per room.
++ stayPeriod (stayPeriodResp) - Contains information about when the guest wants to check in and check out of the hotel. This indicates the complete hotel stay duration. The total `stayPeriod` must be less than or equal to 90 days. Note that the stay period limitation is supplier-specific.
++ filters (filtersResp) - Contains filters to narrow down the hotel search results. The search results include only those hotels that match all the filter criteria specified. Note that all hotel content attributes, such as the hotel's amenities and star rating, are obtained from the content provider. 
++ travellerCountryCodeOfResidence: `US`(string) - 2-character ISO code that indicates the traveler's country of residence.
++ travellerNationalityCode: `US` (string) - 2-character ISO code that indicates the traveler's nationality. 
++ bounds (boundsRectResp) - Contains information about the region where the customer wants to search for hotels.
+
+## searchQueryRespInfo
++ roomOccupancy (roomOccupancyResp) - Contains the list of room occupancy objects that contain the `occupants` information for the room. You can search for hotels that can accommodate up to 8 guests in a room (occupancy) in one single call. This limitation can vary per supplier. Note that there must be at least one adult per room.
++ stayPeriod (stayPeriodResp) - Contains information about when the guest wants to check in and check out of the hotel. This indicates the complete hotel stay duration. The total `stayPeriod` must be less than or equal to 90 days. Note that the stay period limitation is supplier-specific.
++ filters (filtersResp) - Contains filters to narrow down the hotel search results. The search results include only those hotels that match all the filter criteria specified. Note that all hotel content attributes, such as the hotel's amenities and star rating, are obtained from the content provider. 
++ travellerCountryCodeOfResidence: `US`(string) - 2-character ISO code that indicates the traveler's country of residence.
++ travellerNationalityCode: `US` (string) - 2-character ISO code that indicates the traveler's nationality. 
++ hotelId: `13652` (string) - Unique hotel ID that identifies a specific hotel for which you want to retrieve information. This is the unique ID that the content provider has assigned to the hotel.
+
+## roomOccupancyResp
++ occupants (array [occupantsResp]) - Contains the list of information for each guest in a room. You can search for hotels that can accommodate up to 8 guests in a room (occupancy). This limitation can vary per supplier. Note that there must be at least one adult per room.<br><br>For example, if you are searching for a room with 2 guests, namely guest1 and guest2, the `occupants` array will contain two objects. The first object will contain the type and age for guest1 and the second object will contain the type and age for guest2.
+
+## occupantsResp
++ type (enum, required) - Type of guest. Note that there must be at least one adult per room.
+  + Adult
+  + Child
++ age: 25 (number) - Age of the guest. The age must be provided for a child guest. A child guest's age must be between `0` and `18`. The age is optional for an adult guest. An adult guest's age must be between `0` and `120`. Note that the age limitations are country-specific.
+
+## stayPeriodResp
++ start: `{date|YYYY-MM-DD|30}` (string) - Check-in date or the start date of the stay duration.<br><br><b>Format:</b> YYYY-MM-DD
++ end: `{date|YYYY-MM-DD|33}` (string) - Check-out date or the end date of the stay duration.<br><br><b>Format:</b> YYYY-MM-DD
+
+## filtersResp
++ hotelChains: `2809` (array, optional) - Include only those hotels that belong to the list of hotel chains specified in this field. To apply this filter, you must specify the hotel chain code in the `hotelChains` array. If you do not know the hotel chain code for a hotel chain, please contact cxLoyalty Business Team.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>Users can filter search results based on hotel chains to view only those hotels that belong to their preferred hotel chain. This preference can be based on the quality of service, cost, membership (loyalty), or deals (offers) that are available with a specific chain of hotels.</li><li>This is a case-insensitive, exact match filter. This means that setting the `hotelChains` field to `ACME Hotel Chains` or `ACME hotel chains` will return the same set of hotels that belong to this hotel chain.</li><li>If the hotel chain information for a hotel is not available from the content provider, the hotel is filtered out from the hotel search results.</li></ul>
++ allowedCountry: `FR` - Include only those hotels that belong to the country (<a target="_blank" href="../reference-reads/#countrycodes">2-character ISO country code</a>) specified in this field. This filter is used when the specified radial or rectangular search region spreads across different countries and you want to restrict the results to only one specific country. <br><br>Consider a scenario where the georegion provided in the search criteria is located close to a country's borderline and the radius or the rectangular georegion spans two countries, such as `France` and `Belgium`. In this scenario, if you want to restrict the results to `France`, you must set the `allowedCountry` field value to `FR`.
++ include hotelNames 
++ include hotelIds
++ include mapPriceSearch
++ include mapHotelRatingSearch
++ include hotelBrands
++ include mapHotelAmenities
++ include tripAdvisorRatingSearch
++ include offersFilter
++ include trustYouAmbienceFilter
++ include trustYouRatingFilter
++ include neighborhoodsFilter
+
+## boundsRadialResp
++ circle (object) - Contains the geographic coordinates of the center point and the radius within which you want to search for hotels.
+    + center (object) - Contains the latitude and longitude coordinates of the given point from which the radius is calculated to determine the area to search for hotels.<br><br>For example, if you want to search for hotels within a 50 km radius from the CDG airport (Paris Charles de Gaulle Airport), the CDG airport is your center.
+        + lat: `-34.570784` (number) - Latitude coordinate of the center point. The `lat` value must be between `-90` and `+90`.<br><br>For example, the lat value for the CDG (Paris Charles de Gaulle Airport) airport is `49.0097`.<br><br><b>Format:</b> Decimal
+        + long: `-58.580309` (number) - Longitude coordinate of the center point. The `long` value must be between `-180` and `+180`.<br><br>For example, the long value for the CDG (Paris Charles de Gaulle Airport) airport is `2.5479`.<br><br><b>Format:</b> Decimal
+    + radiusKm: 50.5 (number) - Distance, in kilometers, from the center point that you want to consider in the search area. The `radiusKm` value must be between `1` and `100`.<br><br>For example, if you want to search within a 50.5 km radius from the CDG (Paris Charles de Gaulle Airport) airport set the `radiusKm` field to `50.5`.<br><br><b>Format:</b> Decimal
+    + countryCode: `US` (string) - Includes hotel inventory and rates from suppliers that are configured for the country (<a target="_blank" href="../reference-reads#countrycodes">2-character ISO country code</a>) specified in this field. This field is specifically useful when you want to retrieve hotel inventory and rates from region-based suppliers.<br><br><b>Note:</b> If you do not provide this field, the hotel inventory is retrieved from the suppliers that are set in your default account configuration.   
+
+## boundsRectResp
++ rectangle (object) - Contains the geographic coordinates for the rectangular region where you want to search for hotels. A rectangular region is defined by two geocodes representing the top-left and the bottom-right corners of the rectangle. You must ensure that the top-left and bottom-right coordinates do not form a horizontal or vertical line. Additionally, the diagonal distance between the top-left and bottom-right coordinates does not exceed `250 km`.<br><br>A hotel is considered within a rectangular region when the hotel-latitude is on or to the North of bottom-right latitude, the hotel-latitude is on or to the South of top-left latitude, the hotel-longitude is on or to the East of top-left longitude, and the hotel-longitude is on or to the West of bottom-right longitude.
+    + topLeft (object) - Contains the latitude and longitude of the top-left point of the rectangular area. You must ensure that the top-left and bottom-right coordinates do not form a horizontal or vertical line.
+        + lat: `48.839003` (number) - Latitude coordinate for the top-left point. The `lat` value must be between `-90` and `+90`.<br><br><b>Format:</b> Decimal
+        + long: `2.305399` (number) - Longitude coordinate for the top-left point. The `long` value must be between `-180` and `+180`.<br><br><b>Format:</b> Decimal
+    + bottomRight (object, required) - Contains the latitude and longitude of the bottom-right point of the rectangular area. You must ensure that the top-left and bottom-right coordinates do not form a horizontal or vertical line.
+        + lat: `48.881919` (number) - Latitude coordinate for the bottom-right point. The `lat` value must be between `-90` and `+90`.<br><br><b>Format:</b> Decimal
+        + long: `2.403589` (number) - Longitude coordinate for the bottom-right point. The `long` value must be between `-180` and `+180`.<br><br><b>Format:</b> Decimal
+    + countryCode: `US` (string) - Includes hotel inventory and rates from suppliers that are configured for the country (<a target="_blank" href="../reference-reads#countrycodes">2-character ISO country code</a>) specified in this field. This field is specifically useful when you want to retrieve hotel inventory and rates from region-based suppliers.<br><br><b>Note:</b> If you do not provide this field, the hotel inventory is retrieved from the suppliers that are set in your default account configuration.   
+
+## guestInfo
++ include type
++ name (name) - Contains information about the name of the guest.
++ age: 25 (number) - The age must be provided for a child guest. A child guest's age must be between `0` and `18`. The age is optional for an adult guest. An adult guest's age must be between `0` and `120`. Note that the age limitations are country-specific.
+
+## type
++ type (enum) - Type of guest.
+  + Adult
+  + Child
+
+## name
++ title (enum) - Title before the name.
+  + Mr
+  + Madam
+  + Master
+  + Miss
+  + Mrs
+  + Ms
+  + Mx
++ first: `John` (string) - First name.
++ middle: `Alex` - Middle name.
++ last: `Smith` (string) - Last name.
++ suffix: `Jr` - Suffix that follows the name.
+
+## bookingContact
++ name (name) - Contains information about the name of the person who is making the booking. 
++ contactInfo (contactRetrieve) - Contains the contact information of the person who is making the booking. 
++ include dob
++ include nationality
+
+## reportingFields
++ field1: `{dateTime|YYYYMMDDHHmm|30 64800}` - Indicates the value for custom field 1.
++ field2: `value2` - Indicates the value for custom field 2.
++ field3: `value3` - Indicates the value for custom field 3.
++ field4: `value4` - Indicates the value for custom field 4.
++ field5: `value5` - Indicates the value for custom field 5.
+
+## paymentMethod
++ formOfPayment (paymentMethodInfo) - Contains the list of payment details for the booking.
+
+## paymentMethodInfo
++ type (enum)- Indicates the type of payment that is used to make the booking.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If cxLoyalty is the Merchant of Record, the value returned in the `type` field is `Card` and the `/formOfPayment/card` object is returned in the API response.</li><li>If cxLoyalty is not the Merchant of Record, the value returned in the `type` field is `Cash` and the `/formOfPayment/card` object is not returned in the API response.</li></ul>
+  + Card
+  + Cash
++ card (cards) - Contains information about the card that is used to make the payment for the booking. If the `/formOfPayment/type` field returns `cash`, the `card` object is not returned in the API response.<br><br><b>Note:</b> We currently support payment using only one card.
+
+## cards
++ number: `5555555555554444` - Credit card number used for the payment. Note that the credit card number must be at least 12 digits.
++ holderName: `John Doe` - Name on the credit card that is used for the payment.
++ cvv: `123` - Three or four-digit card verification value (CVV) or card security code (CSC). <a href="https://en.wikipedia.org/wiki/Card_security_code" target="_blank">Read more about CVV/CSC.</a>
++ issuedBy: `VI` (enum) - Card issuer. <a href="../reference-reads#cardissuer" target="_blank">See the list of card issuer codes and their descriptions</a>.
+  + VI
+  + CA
+  + AX
+  + DS
+  + TO 
+  + DC
+  + S
+  + JC
+  + BC
+  + T
+  + R 
+  + E
++ expiry (expiryInfoResp) - Contains the credit card expiration details. Note that the expiration date of the credit card must be later than or equal to the current month and of the current year. 
++ contactInfo (cardcontactInfoResp) - Contains the contact information for the cardholder. The contact information provided for the cardholder must be the same as the billing contact information that is on the record of the credit card issuing bank.
+
+## expiryInfoResp
++ month: 12 (number) - Expiration month of the credit card. Note that the value of `month` must be between `1` and `12`.
++ year: 2023 (number) - Expiration year of the credit card.
+
+## cardcontactInfoResp
++ email: `abc@xyz.com` - Email addresses (recipient ID) that must be used when any email communication needs to be made with the cardholder.
++ billingAddress (billingAddressInfo) - Contains information about the billing address of the cardholder.
++ phone (phoneInfo) - Contains the list of contact numbers for the cardholder.
+
+## billingAddressInfo
++ line1: `3077 ACME Street - Street number and street name. 
++ line2: `Landmark: Beside the ACME Shopping Mall` - Additional information related to the address, such as landmark, apartment, suite, unit, and building information. 
++ cityName: `San Francisco` - Name of the city.
++ state (stateInfo) - Contains information about the state.
++ countryCode: `US` - 2-character ISO code of the country. <a target="_blank" href="../reference-reads/#countrycodes">Read more about valid country codes.</a>
++ postalCode: `94133` - Postal code. In various countries, postal code is also known as postcode, post code, Eircode, PIN Code, or ZIP Code. 
+
+## stateInfo
++ code: `CA` - 2-character state code.
++ name: `California` - Name of the state.
+
+## phoneInfo
++ type: `Unknown` (enum) - Type of phone number or contact number.
+  + Fax
+  + Home
+  + Mobile
+  + Work
+  + Unknown
++ number: `555-0173` - Phone number. The phone number can include the following characters: `0` to `9`, plus sign `+`, minus sign `-`, and parenthesis `( )`.
++ countryCode: `1` - Country code for the phone number.
+
+## customerInfoRetrieve
++ name (name) - Contains information about the name of the customer. 
++ contactInfo (contact) - Contains the contact information for the customer. The customer is the user who is currently logged in while making the booking. This user can be an agent, the primary guest, or another person who is doing the booking on behalf of the primary guest.  
++ include dob
++ include nationality
++ customerId: `43543` - Unique ID to identify a specific customer. This can be used for reporting purpose. For example, you can retrieve the order history for a specific customer using the `customerId`. 
+
+## dob
++ dob: `1989-12-25` - Date of birth.<br><br><b>Format:</b> YYYY-MM-DD
+
+## nationality
++ nationality: `US` - 2-character ISO code that indicates the nationality of the guest. <a target="_blank" href="../reference-reads/#countrycodes">Read more about valid nationality codes.</a>
+
+## bookingInfoRetrieve
++ bookingInfo (bookingRespRetrieve) - Contains informations about the booking details which includes the selected payment options, guest information, and the contact information of the person who made the booking. 
+
+## bookingRespRetrieve
++ guests (array[guestInfo]) - Contains the list of guest information (occupants) for whom the room is booked.
++ bookingContact (bookingContact) - Contains the name and the contact information of the customer.   
++ paymentOptions (array [paymentOptionInfoRetrieve]) - Contains the list of <@ reward_popup @> options that was availed to pay for the room.<br><br>
+<b>Notes:</b> 
+  + In case of hotel bookings, a single reward option is returned within the `/paymentOptions` array. 
+  + Depending on the selected reward option, either the amount in cash, points, or a combination of both the amount in cash and points is returned within the `/paymentOptions` array.
++ reportingFields (reportingFieldsInfo) - Contains the fields that can be used for any business-related purposes, such as to pass the booking token for reporting purpose.<br><br>If you want to configure a custom field, please contact cxLoyalty Business Team.
+
+## paymentOptionInfoRetrieve
++ rewardId: `123` (string, required) - Unique ID for the <@ reward_popup @> that was availed to pay for the room. 
++ cash (cashBookRetrieve) - Contains information about the amount in cash that the <@ customer_popup @> paid to book the room.
++ points (pointsPriceRespRetrieve) - Contains information about the number of points that the <@ customer_popup @> redeemed to book the room. 
+
+## cashBookRetrieve
++ amount: 100.00 (number) - Cash component of the <@ actual_fare_popup @> that the <@ customer_popup @> paid to book the room.<br><br><b>Format:</b> Decimal
++ paymentMode: `Card` (enum) - Indicates the mode of payment for the `cash/amount`.<br><br><b>Notes:</b><br><ul style='list-style: disc'><li>If this field returns `Card`, then the credit card information is returned in the `/formOfPayment` object.</li><li>If this field is set to `Cash`, then the `/formOfPayment/card` object is not returned in the API response.</li></ul>
+  + Cash
+  + Card
+
+## pointsPriceRespRetrieve
++ value: 2000 (number) - Number of points that the <@ customer_popup @> redeemed to book the room.<br><br><b>Format:</b> Decimal
++ unit: `points` (string) - Indicates the currency that is associated with the <@ loyalty_program_popup @>. For example, points and miles. 
+
+## bookingDetailsInfo
++ bookingTimestamp: `2018-03-21T06:35:10.864Z` - Date and time when the room booking is completed.<br><br><b>Format:</b> YYYY-MM-DDTHH:MM:SSZ<br><br><a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a>
++ include supplierConfirmationNumber
++ include hotelConfirmationNumber
++ cancellationToken:`268063245` - Cancellation token received from the supplier that is required to cancel the room booking. Note that this information is supplier-specific, which means that some suppliers might provide a `cancellationToken` while some suppliers do not provide a `cancellationToken`. 
++ roomDetails (roomDetailsInfo) - Contains the list of room-wise confirmation details. 
++ errors (array [errorsBookings]) - Contains the list of errors that occur during the booking process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.
++ warnings (array [warningsBookings]) - Contains the list of warnings that appear during the booking process.
+
+## roomDetailsInfo
++ include supplierConfirmationNumber
++ include hotelConfirmationNumber 
++ cancellationToken: `268063245` - Cancellation token received from the supplier that is required to cancel the room booking. Note that this information is supplier-specific, which means that some suppliers might provide a `cancellationToken` while some suppliers do not provide a `cancellationToken`. 
+
+
+## supplierConfirmationNumber
++ supplierConfirmationNumber: `2356` - Supplier confirmation number for the booking. For every successful booking, the supplier confirmation number is returned in either the `supplierConfirmationNumber` field in the `/confirmationDetails` object or in the `roomDetails/supplierConfirmationNumber` field.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `supplierConfirmationNumber` is required when you contact cxLoyalty Customer Service.</li><li>The `supplierConfirmationNumber` must be used as the confirmation number for the hotel reservation.</li><li>If the supplier confirmation number is returned in the `/confirmationDetails` object and in the `/confirmationDetails/roomDetails` object, the number returned in the `/confirmationDetails` object must be used as the confirmation number for the hotel reservation.</li></ul>
+
+## hotelConfirmationNumber
++ hotelConfirmationNumber: `8765` - Hotel confirmation number for the booking. The hotel's confirmation number is returned in either the `hotelConfirmationNumber` field in the `/confirmationDetails` object or in the `roomDetails/hotelConfirmationNumber` field. If the hotel did not provide a confirmation number, this field returns `null`.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `hotelConfirmationNumber` is required when you contact cxLoyalty Customer Service. If the `hotelConfirmationNumber` is not available, you must provide the `supplierConfirmationNumber`.</li><li>The `hotelConfirmationNumber` and the `supplierConfirmationNumber` must be used as confirmation numbers for the hotel reservation. If the `hotelConfirmationNumber` is not available, the `supplierConfirmationNumber` must be used as the confirmation number for the hotel reservation.</li><li>If the hotel confirmation number is returned in the `/confirmationDetails` object and in the `/confirmationDetails/roomDetails` object, the number returned in the `/confirmationDetails` object must be used as the confirmation number for the hotel reservation.</li></ul>
+
+## errorsBookings
++ code: `3434` - Code for the error. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
++ message: `Error: Could not process the request due to network connectivity issues. Please try again.` - Error message text. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
+
+## warningsBookings
++ code: `4313` - Code for the warning.
++ message: `Warning: Due to heavy traffic, the processing might take longer than expected.` - Warning message text.
+
+## cancellationDetails
++ cancellationTimestamp: `2018-03-21T06:35:10.864Z` - Date and time when the room booking is canceled.<br><br><b>Format:</b> YYYY-MM-DDTHH:MM:SSZ<br><br><a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a> 
++ include supplierCancellationNumber
++ include hotelCancellationNumber
++ roomDetails (roomDetailsCancel) - Contains information about the cancellation details of the room booking.
++ errors (array [errorsCancel]) - Contains the list of errors that occur during the cancellation process. For example, if the  cancellation fails, the `errors` array lists the appropriate error messages.
++ warnings (array [warningsCancel]) - Contains the list of warnings that appear during the cancellation process.
+
+## roomDetailsCancel
++ include supplierCancellationNumber
++ include hotelCancellationNumber
+
+## errorsCancel
++ code: `3434` - Code for the error. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
++ message: `Error: Could not process the request due to network connectivity issues. Please try again.` - Error message text. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
+
+## warningsCancel
++ code: `4313` - Code for the warning. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
++ message: `Warning: Due to heavy traffic, the processing might take longer than expected.` - Warning message text. <a href="../errors#apierrorcode" target="_blank">See the list of API error codes and messages</a>.
+
+## hotelCancellationNumber
++ hotelCancellationNumber: `8742261` - Hotel cancellation number for the booking. The hotel's cancellation number is returned in either the `hotelCancellationNumber` field in the `/cancellationDetails` object or in the `roomDetails/hotelCancellationNumber` field. If the hotel did not provide a cancellation number, this field returns `null`.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `hotelCancellationNumber` is required when you contact cxLoyalty Customer Service. If the `hotelCancellationNumber` is not available, you must provide the `supplierCancellationNumber`.</li><li>The `hotelCancellationNumber` and the `supplierCancellationNumber` must be used as cancellation numbers for the hotel reservation. If the `hotelCancellationNumber` is not available, the `supplierCancellationNumber` must be used as the cancellation number for the hotel reservation.</li><li>If the hotel cancellation number is returned in the `/cancellationDetails` object and in the `/roomDetails/hotelCancellationNumber` field, the number returned in the `/cancellationDetails` object must be used as the cancellation number for the hotel reservation.</li></ul> 
+
+## supplierCancellationNumber
++ supplierCancellationNumber: `78558816` - Supplier cancellation number for the booking. For every successful cancellation, the supplier's cancellation number is returned in either the `supplierCancellationNumber` field in the `/cancellationDetails` object or in the `roomDetails/supplierCancellationNumber` field.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `supplierCancellationNumber` is required when you contact cxLoyalty Customer Service.</li><li>The `supplierCancellationNumber` must be used as the cancellation number for the hotel reservation.</li><li>If the supplier cancellation number is returned in the `/cancellationDetails` object and in the `roomDetails/supplierCancellationNumber` field, the number returned in the `/cancellationDetails` object must be used as the cancellation number for the hotel reservation.</li></ul>
+
+## mapHotelReq
++ sessionId: `0f8fad5b-d9cb-461f-a165-70867728951z` (string, required) - Unique ID for the current session. You must obtain the `sessionId` for the current session from the `Get Hotel Search Results` API response. The session ID is valid for 60 minutes from the time it is generated.
++ currency: `USD` - 3-character ISO code that indicates the currency in which you want to retrieve monetary amounts. The API calculates the amount equivalents and returns the amounts in the currency specified. For example, if the `currency` field value is set to `USD`, then the monetary values must be set in their `USD` amount equivalents. We support all <a target="_blank" href="../reference-reads#currencies">ISO currencies</a>. If you want to configure multiple currencies, please contact cxLoyalty Business Team.<br><br>Consider a scenario where you set the `currency` field value to `USD` and the supplier's currency is in `AUD`. The API calculates the `AUD` to `USD` amount equivalents and displays monetary amounts in `USD`.<br><br>
+<b>Note:</b> If you do not provide the `currency` field, the `currency` field value is set to the currency provided in the `Initiate Hotel Search` API request.
++ include mapFilters
++ include customerMapOptional
+
+## customerMapOptional
++ customerInfo (customerDetails) - Contains information about the <@ customer_popup @>.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If you do not provide this field, the API returns the <@ reward_popup @> options based on the available <@ point_balance_popup @> provided in the `Get Hotel Search Results` API request.</li><li>If you provide this field, the API returns the <@ reward_popup @> options based on the <@ point_balance_popup @> provided in the `Map Hotels` API request.</li></ul>
+
+## mapFilters
++ filters (mapFiltersInfo) - Contains <@ filters_map @> to narrow down the hotels that you want to display on a map. The map displays only those hotels that match all the filter criteria specified. 
+
+## mapFiltersInfo 
++ include hotelNames 
++ include hotelIds
++ include mapPrice 
++ include mapHotelRating 
++ include mapHotelAmenities
++ include tripAdvisorRating
++ include filtersMapInfo
+
+## filtersMapInfo 
++ offers (offerMapData) - Includes only those hotels that match the filter criteria specified for offers.
+
+## offerMapData
++ includeHotels (enum) - Indicates whether you want the hotels with offers, without offers, or both.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>By default, the `includeHotels` field is set to `All`. This means that hotels that provide offers as well as those which do not provide any offer are displayed on the map.</li><li>If the `includeHotels` field is set to `WithOffers`, only hotels that provide offers are displayed on the map.</li><li>If the `includeHotels` field is set to `WithoutOffers`, only hotels that do not provide any offer are displayed on the map.</li></ul>
+  + All
+  + WithOffers  
+  + WithoutOffers 
+
+## hotelNames 
++ hotelNames: `Hotel Aulivia Opera` (array) - Include only those hotels whose hotel name is same as specified in this field. 
+
+## hotelIds
++ hotelIds: `13652` (array) - Include only those hotels whose `hotelId` is specified in this field. 
+
+## mapPrice
++ price (mapPriceInfo) - Include only those hotels whose room rate is equal to or higher than the rate specified in the `minPrice` field and equal to or lower than the rate specified in the `maxPrice` field. The `price` filter allows users to see only those hotels that are within the specified price range.<br><br>Consider a scenario where ACME Hotel's room rate is 98, Wayne Hotel's room rate is 100, and Stark Hotel's room rate is 250. If you set the `minPrice` field to `90` and the `maxPrice` field to `200`, then the hotels displayed on the map include `ACME Hotel` and `Wayne Hotel`. The `Stark Hotel` is not displayed on the map as its room rate, 250, is higher than the `maxHotelPrice` specified.
+
+## mapPriceSearch
++ price (mapPriceInfoSearch) - Include only those hotels whose room rate is equal to or higher than the rate specified in the `minPrice` field and equal to or lower than the rate specified in the `maxPrice` field. The `price` filter allows users to see only those hotels that are within the specified price range.<br><br>Consider a scenario where ACME Hotel's room rate is 98, Wayne Hotel's room rate is 100, and Stark Hotel's room rate is 250. If you set the `minPrice` field to `90` and the `maxPrice` field to `200`, then the search results include `ACME Hotel` and `Wayne Hotel`. The `Stark Hotel` is not included as its room rate, 250, is higher than the `maxHotelPrice` specified.
+
+## mapPriceInfo 
++ minPrice: 224.31 (number) - Include only those hotels whose room rate is equal to or higher than the rate specified in this field. The `minPrice` value must be greater than `0`, if specified.<br><br>Consider a scenario where ACME Hotel's room rate is 98, Wayne Hotel's room rate is 100, and Stark Hotel's room rate is 250. If you set the `minPrice` field to `100`, then the hotels displayed on the map includes only `Wayne Hotel` and `Stark Hotel`. The `ACME Hotel` is not displayed on the map as its room rate, `98`, is lower than the `minPrice` specified.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `minPrice` value is an indicative rate, which means that these are approximate rates. If you want to obtain the exact rate, you must use the <a href="../room-list" target="_blank">Get Room List</a> API.</li><li>The value for this field must be a positive number.</li><li>The value for this field must be less than the value of the `maxPrice` field, if specified.</li></ul><br><br><b>Format:</b> Decimal
++ maxPrice: 1797.02 (number) - Include only those hotels whose room rate is equal to or lower than the rate specified in this field. The `maxPrice` value must be greater than `0`. Additionally, the `maxPrice` must be greater than the `minPrice`, if specified.<br><br>Consider a scenario where ACME Hotel's room rate is `98`, Wayne Hotel's room rate is `100`, and Stark Hotel's room rate is `250`. If you set the `maxPrice` field to `100`, the hotels displayed on the map includes only `Wayne Hotel` and `ACME Hotel`. The `Stark Hotel` is not displayed on the map as its room rate, `250`, is higher than the `maxPrice` specified.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `minPrice` and `maxPrice` <@ filters_body @> allow users to see only those hotels that are within the specified price range.</li><li>The value for this field must be a positive number.</li></ul><br><br><b>Format:</b> Decimal
+
+## mapPriceInfoSearch 
++ minPrice: 100 (number) - Include only those hotels whose room rate is equal to or higher than the rate specified in this field. The `minPrice` value must be greater than `0`, if specified.<br><br>Consider a scenario where ACME Hotel's room rate is 98, Wayne Hotel's room rate is 100, and Stark Hotel's room rate is 250. If you set the `minPrice` field to `100`, then the search results include only `Wayne Hotel` and `Stark Hotel`. The `ACME Hotel` is not included as its room rate, `98`, is lower than the `minPrice` specified.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `minPrice` value is an indicative rate, which means that these are approximate rates. If you want to obtain the exact rate, you must use the <a href="../room-list" target="_blank">Get Room List</a> API.</li><li>The value for this field must be a positive number.</li><li>The value for this field must be less than the value of the `maxPrice` field, if specified.</li></ul><br><br><b>Format:</b> Decimal
++ maxPrice: 1200 (number) - Include only those hotels whose room rate is equal to or lower than the rate specified in this field. The `maxPrice` value must be greater than `0`. Additionally, the `maxPrice` must be greater than the `minPrice`, if specified.<br><br>Consider a scenario where ACME Hotel's room rate is `98`, Wayne Hotel's room rate is `100`, and Stark Hotel's room rate is `250`. If you set the `maxPrice` field to `100`, then the search results include only `Wayne Hotel` and `ACME Hotel`. The `Stark Hotel` is not included as its room rate, `250`, is higher than the `maxPrice` specified.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The `minPrice` and `maxPrice` <@ filters_body @> allow users to see only those hotels that are within the specified price range.</li><li>The value for this field must be a positive number.</li></ul><br><br><b>Format:</b> Decimal
+
+## mapHotelRating
++ rating: `4`, `5` (array) - Include only those hotels whose <@ starrating @> is equal to the rating specified in this field. The `rating` value must be between `1` and `5`. The hotel star rating information is obtained from the content provider.<br><br>If you set the `rating` field to `3`, then all the hotels whose rating is between `3.0` and `3.9` are displayed on the map.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The hotel rating typically indicates the quality of service at the hotel.</li><li>If the `rating` specified is lower than `1` or higher than `5`, the response returns an error.</li><li>The value for this field must not be a decimal.</li></ul>
+
+## mapHotelRatingSearch
++ rating: `4`, `5` (array) - Include only those hotels whose <@ starrating @> is equal to the rating specified in this field. The `rating` value must be between `1` and `5`. The hotel star rating information is obtained from the content provider.<br><br>If you set the `rating` field to `3`, then the search results include hotels whose rating is between `3.0` and `3.9`.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>The hotel rating typically indicates the quality of service at the hotel.</li><li>If the `rating` specified is lower than `1` or higher than `5`, the response returns an error.</li><li>The value for this field must not be a decimal.</li></ul>
+
+## mapHotelAmenities
++ amenities: `28` (array) - Include only those hotels which provide the <@ amenitiessmall @> specified in this field. The `amenities` filter allows users to see only those hotels that provide the amenities of their choice.<br><br> You must provide the master amenity ID of the amenity that are supported by the `amenities` filter. To know the amenities supported by the amenities filter, <a href="../reference-reads#masterAmenities" target="_blank">see the list of supported master amenities</a>. 
+
+## tripAdvisorRating
++ tripAdvisorRating: `4`, `5` (array) - Include only those hotels whose TripAdvisor&reg; rating is equal to the TripAdvisor&reg; rating specified in this field. The `tripAdvisorRating` field value must be between 1 and 5. This rating information is obtained from the <a target="_blank" href="http://www.tripadvisor.com/">TripAdvisor&reg;</a>.<br><br>If you set the `tripAdvisorRating` field to `3`, then all the hotels whose TripAdvisor&reg; rating is between `3.0` and `3.9` are displayed on the map.
+ 
+## tripAdvisorRatingSearch
++ tripAdvisorRating: `4`, `5` (array) - Include only those hotels whose TripAdvisor&reg; rating is equal to the TripAdvisor&reg; rating specified in this field. The `tripAdvisorRating` field value must be between 1 and 5. This rating information is obtained from the <a target="_blank" href="http://www.tripadvisor.com/">TripAdvisor&reg;</a>.<br><br>If you set the `tripAdvisorRating` field to `3`, then the search results include hotels whose TripAdvisor&reg; rating is between `3.0` and `3.9`.
+
+## mapHotelResp
++ include mapHotel
+
+## mapHotel
++ hotels (array [mapHotelsInfo]) - Contains the list of mapped hotels along with information about the hotel, such as hotel ID, name, and the geographic coordinates of the hotel. 
+
+## mapHotelsInfo 
++ id: `13652` (string) - Unique hotel ID that identifies a specific hotel. This is the unique ID that the content provider has assigned to the hotel.
++ name: `Hotel Aulivia Opera` - Name of the hotel. 
++ geocode (geocode) - Contains information about the unique geographic coordinates, latitude and longitude, of the hotel. 
+
+## getFilterDataResponse
++ include filtersData 
+
+## filtersData 
++ filters (filtersDataInfo) - Contains the filter data for various <@ filters_display @>. You can use this filter data to display filters on the search results page so that your customers can narrow down the search results to hotels that best meet their requirements.  
+
+## filtersDataInfo
++ hotelNames (hotelNamesData) - Contains the URL to retrieve the details, such as hotel ID and hotel name for the hotels returned in the search result set.
++ hotelIds (hotelIdsData) - Contains the URL to retrieve the details, such as hotel ID and hotel name for the hotels returned in the search result set. 
++ price (priceData) - Contains the filter data for the price filter. This filter data includes the `minPrice` and `maxPrice` value. 
++ rating (ratingData) - Contains the filter data for the rating filter. This filter data includes the rating and the hotel count for each rating. 
++ landmarks (landmarkData) - Contains information about the landmark data that can be used to display on the User Interface (UI).<br><br><b>Note:</b> If the configuration for landmark data is not enabled, then the `landmark` object is not returned in the API response. To enable the configuration, contact the cxLoyalty Business team. 
++ hotelChains (hotelChainData) - Contains the filter data for the hotel chains filter. This filter data includes the list of hotel chains and the hotel count for each hotel chain. 
++ hotelBrands (hotelBrandsData) - Contains the filter data for the hotel brands filter. This filter data includes the list of hotel brands and the hotel count for each hotel brand. 
++ amenities (amenitiesData) -  Contains the filter data for the amenities filter. The filter data includes the list of amenities and the hotel count for each amenity. 
++ tripAdvisorRating (tripAdvisorRatingData) -  Contains the filter data for the <a target="_blank" href="http://www.tripadvisor.com/">TripAdvisor&reg;</a> rating filter. This filter data includes the list of TripAdvisor&reg; ratings and the hotel count for each rating.
++ offers (offerFilterInfo) - Contains the filter data for offer information about the offer filter. The filter data includes the count of hotels that provide offers. 
++ trustYouRating (trustYouRatingData) - Contains the filter data for the <a target="_blank" href="https://www.trustyou.com">TrustYou</a> rating filter data. This filter data includes the list of TrustYou ratings and the hotel count for each rating.
++ trustYouAmbience (trustYouAmbienceData) - Contains the filter data for the <a target="_blank" href="https://www.trustyou.com">TrustYou</a> ambience filter. This filter data includes the list of TrustYou Ambience categories and the hotel count for each category. 
++ neighborhoods (neighborhoodData) - Contains the filter data for the neighborhood filter. This filter data includes list of neighborhoods and the count of hotels located in those neighborhoods. 
+
+## hotelNamesData 
++ getURL: `https://hotel-loyalty.stage.cnxloyalty.com/filter-data/{sessionId}/hotel-names` - URL to retrieve hotel details, such as hotel ID and name. The `getURL` is valid for `60` minutes from the time the hotel search is initiated.
+
+## hotelIdsData
++ getURL: `https://hotel-loyalty.stage.cnxloyalty.com/filter-data/{sessionId}/hotel-names` - URL to retrieve hotel details, such as hotel ID and name. The `getURL` is valid for `60` minutes from the time the hotel search is initiated.
+
+## priceData 
++ minPrice: 224.10 (number) - Room price of the lowest priced hotel that is returned in the search result set.<br><br><b>Format:</b> Decimal  
++ maxPrice: 1797.02 (number) - Room price of the highest priced hotel that is returned in the search result set.<br><br><b>Format:</b> Decimal 
++ currency: `USD` - 3-character ISO code that indicates the currency in which monetary amounts are returned in the response. The API calculates the amount equivalents and returns the amounts in the currency specified. For example, if the currency field value is set to USD, then the `minPrice` and `maxPrice` amounts are returned in their USD amount equivalents. We support all <a target="_blank" href="../reference-reads#currencies">ISO currencies</a>. If you want to configure multiple currencies, please contact cxLoyalty Business Team.
+
+## ratingData 
++ items (array [itemRatingInfo]) - Contains the list of rating filter data.
+
+## itemRatingInfo 
++ name: `Outstanding` (string) - Name of the rating. 
++ value: `5`(string) - Value for the rating.
++ count: 20 (number) - Count of hotels whose rating is equal to or higher than the rating returned in the `rating/items[]/value` field. 
++ include minPriceRating
+
+## minPriceRating 
++ minPrice: 500.00 (number) -  Room price of the lowest priced hotel from the list of hotels whose rating is equal to or higher than the rating returned in the `rating/items[]/value` field.<br><br><b>Format:</b> Decimal
+
+## amenitiesData 
++ items (array [itemAmenitiesInfo]) - Contains the list of <@ amenitiessmall @> filter data.
+
+## itemAmenitiesInfo 
++ name: `Activity Desk` (string) - Name of the amenity.  
++ value: `90`(string) - Master amenity ID. The master amenity ID can be used to retrieve and display the amenity name on the User Interface (UI).<br><br>To know the master amenity ID <a href="../reference-reads#masterAmenities" target="_blank">see the standard list of master amenities</a>.
++ count: 30 (number) - Count of hotels which provide the amenity returned in the `amenities/items[]/value` field.  . 
++ include minPriceAmenities
+
+## minPriceAmenities
++ minPrice: 500.00 (number) -  Room price of the lowest priced hotel from the list of hotels that provide the amenity returned in the `amenities/items[]/value` field.<br><br><b>Format:</b> Decimal
+
+## tripAdvisorRatingData
++ items (array [itemtripAdvisorRatingInfo]) - Contains the list of <a target="_blank" href="http://www.tripadvisor.com/">TripAdvisor&reg;</a> rating filter data. 
+
+## itemtripAdvisorRatingInfo 
++ name: `5` (string) - Name of the TripAdvisor&reg; rating.  
++ value: `5`(string) - Value for the TripAdvisor&reg; rating.
++ count: 30 (number) - Count of hotels whose TripAdvisor&reg; rating is equal to the TripAdvisor&reg; rating returned in the `tripAdvisorRating/items[]/value` field.<br><br><b>Note:</b> If the `tripAdvisorRating/items[]/value` field returns `5`, then the `count` field includes hotels whose TripAdvisor® rating is between 5.0 and 5.9.
++ include minPriceTripAdvisor
+
+## minPriceTripAdvisor
++ minPrice: 500.00 (number) - Room price of the lowest priced hotel from the list of hotels whose rating is equal to the TripAdvisor&reg; rating returned in the `tripAdvisorRating/items[]/value` field.<br><br><b>Format:</b> Decimal
+
+## offerFilterInfo 
++ count: 50 (number) - Indicates the number of hotels in the search result set that provide offers.<ul style="list-style-type:disc"><li>If the offers filter (filters/offers/includeHotels field) is set to `All` or `WithOffers` in the `Initiate Hotel Search` API request, then the `count` field only returns the number of hotels that provide offers.</li><li>If the offer filter is set to `WithoutOffers`, then the `count` field returns `0`.</li></ul>
+
+## relevanceCriteria
++ relevanceCriteria (array[relevanceCriteriaInfo]) - Contains information about the relevance criteria that is used for calculating the <@ recommendation_score_small_popup @>. Consider a scenario where you want to search for hotels in Paris and you set the relevance criteria to `Fontainebleau`, based on city. In this case, the recommendation score of the hotels located in Fontainebleau is weighted higher than that of the hotels located in Paris. 
+
+## relevanceCriteriaInfo
++ keyword: `Buenos Aires` (string, required) - The keyword based on which the <@ recommendation_score_small_popup @> is calculated.
++ type: City (enum, required) - Type of relevance criteria used for calculating <@ recommendation_score_small_popup @>. At present, ORXe APIs for Hotel only supports relevance by city.
+  + City
+
+## trustYouRatingData
++ items (array [itemTrustYouRatingInfo]) - Contains the list of <a target="_blank" href="https://www.trustyou.com">TrustYou</a> rating filter data. 
+
+## itemTrustYouRatingInfo
++ name: `Excellent` (string) - Name of the TrustYou rating.
++ value: `9` (string) -  Value for the TrustYou rating
++ count: 30 (number) - Count of hotels whose rating is equal to the TrustYou rating returned in the `trustYouRating/items[]/value` field. 
++ minPrice: 500.00 (number) - Room price of the lowest priced hotel from the list of hotels whose rating is equal to the TrustYou rating returned in the `trustYouRating/items[]/value` field.<br><br><b>Format:</b> Decimal
+
+## trustYouAmbienceData
++ items (array [itemTrustYouAmbienceInfo]) - Contains the list of <a target="_blank" href="https://www.trustyou.com">TrustYou</a> ambience filter data.
+
+## itemTrustYouAmbienceInfo
++ name: `Beach Hotel` (string) - Name of the TrustYou ambience. 
++ value: `Beach Hotel` (string) - Value of the TrustYou ambience. 
++ count: 30 (number) - Count of hotels whose ambience is equal to the TrustYou ambience returned in the `trustYouAmbience/items[]/value` field. 
++ minPrice: 500.00 (number) - Room price of the lowest priced hotel from the list of hotels whose ambience is equal to the <a target="_blank" href="https://www.trustyou.com">TrustYou</a> ambience returned in the `trustYouAmbience/items[]/value` field.<br><br><b>Format:</b> Decimal
+
+## hotelChainData
++ items (array [itemHotelChainInfo]) - Contains the list of <@ hotel_chain_popup @> filter data.
+
+## itemHotelChainInfo 
++ name: `Hotel Aulivia Opera` (string) - Name of the <@ hotel_chain_popup @>. 
++ value: `2809` (string) -  Hotel chain code. The hotel chain code can be used to retrieve and display the <@ hotel_chain_popup @> name on the User Interface (UI).
++ count: 30 (number) - Count of hotels that belong to the <@ hotel_chain_popup @> returned in the `hotelChains/items[]/name` field.
++ minPrice: 500.00 (number) - Room price of the lowest priced hotel from the list of hotels whose <@ hotel_chain_popup @> is equal to the hotel chain returned in the `hotelBrands/items[]/name` field.<br><br><b>Format:</b> Decimal
+
+## hotelBrandsData
++ items (array [itemHotelBrandsInfo]) - Contains the list of <@ hotel_brand_popup @> filter data.
+
+## itemHotelBrandsInfo 
++ hotelChainCode: `2809` - Code for the <@ hotel_chain_popup @> to which this <@ hotel_brand_popup @> belongs. You can display the hotel chain information, along with the hotel brand filter data on the UI, using the `hotelChainCode`.
++ name: `Curio Collection` (string) - Name of the <@ hotel_brand_popup @>. 
++ value: `4940` (string) -  Hotel brand code. The hotel brand code can be used to retrieve and display the <@ hotel_brand_popup @> name on the User Interface (UI).
++ count: 30 (number) - Count of hotels that belong to the <@ hotel_brand_popup @> returned in the `hotelBrands/items[]/name` field.
++ minPrice: 500.00 (number) - Room price of the lowest priced hotel from the list of hotels whose <@ hotel_brand_popup @> is equal to the hotel brand returned in the `hotelBrands/items[]/name` field.<br><br><b>Format:</b> Decimal
+
+## neighborhoodData
++ items (array [itemNeighborhoodInfo]) - Contains the list of neighborhood filter data.
+
+## itemNeighborhoodInfo
++ name: `Popincourt` (string) - Name of the neighborhood.  
++ value: `315430` (string) - Location ID of the neighborhood.
++ count: 1 (number) - Count of hotels that are located in the neighborhood.
++ minPrice: 236.49 (number) - Room price of the lowest priced hotel from the list of hotels that are located in the neighborhood.<br><br><b>Format:</b> Decimal
+
+## rewardsDisplayFareHotel
++ displayFare (rewardsFare) - Contains information about the total room fare for the stay duration for the reward along with the various breakup components that make up the room fare. This room fare is displayed to the <@ customer_popup @> on the User Interface (UI).<br><br>The ORXe APIs for Hotel allows you to offer different fares for the cash-only and points-only rewards. For example, you can offer a room at a reduced fare when the customer pays by points compared to when the customer pays by cash. For more information, see <a href="../reference-reads#fareBasedRewardOption" target="_blank">fare-based reward options</a>.<br><br><b>Note:</b> The `displayFare` object is returned only if the <@ loyalty_program @> is configured to return the fare-based reward options. To configure the loyalty program for fare-based reward options and for more information, please contact cxLoyalty Business Team.
+
+## rewardsFare
++ include currencyDisplayFare
++ include totalFareDisplayFare
++ include fareBreakupInfo
++ include commissions
+
+## landmarkData
++ items (array [itemsLandmark]) - Contains the list of landmark data. You can display the list of landmarks on the User Interface (UI) to show the distance information between the hotel and the selected landmark.
+
+## itemsLandmark   
++ name: `Dallas Museum Of Art` - Name of the landmark. 
++ locationId: `124` - Location ID of the landmark. The location ID is different for each landmark. The `locationId` can be used to retrieve and display the name of the landmark on the User Interface (UI). 
++ subType: `Museum` - Indicates the type of landmark. For example, TrainStation, MetroStation, HighLevelRegion, and MultiCityVicinity. 
++ geoCode (geoCodeLandmarkData) - Contains information about the unique geographic coordinates, latitude and longitude, of the landmark.
+
+## geoCodeLandmarkData
++ lat: `32.7762719` (number, required) - Latitude coordinate for this landmark.<br><br><b>Format:</b> Decimal
++ long: `-96.7968559` (number, required) - Longitude coordinate for this landmark.<br><br><b>Format:</b> Decimal
