@@ -108,7 +108,7 @@
 + include travellerCountryCodeOfResidenceOrderReq
 + include travellerNationalityCodeOrderReq
 + include includeHotelsWithoutRatesOrderReq
-+ hotelIds: (array [string]) - Contains the list of hotel IDs for the hotels where you want to search.<br><br><b>Note:</b> This field is optional and can be specified only in case of search by hotel IDs. 
++ hotelIds: (array [string],fixed-type) - Contains the list of hotel IDs for the hotels where you want to search.<br><br><b>Note:</b> This field is optional and can be specified only in case of search by hotel IDs. 
 + bounds (boundsRadialOrderReq) - Contains information about the region where the customer wants to search for hotels.<br><br><b>Note:</b> If specified at the time of order creation, the `bounds` object provided can be different depending on the type of search performed. For better understanding, see the JSON samples for the following search use cases:<br><ul style="list-style-type:disc"><li><@ boundsradial @></li><li><@ boundsrectangular @></li></ul>
 + include relevanceCriteriaOrderReq
 
@@ -128,7 +128,7 @@
 + roomOccupancy (occupantsOrderReq) - Contains the list of room occupancy objects that contain the `occupants` information for the room.<br><br><b>Note:</b> If you do not provide this field, then the `roomOccupancy` field is not returned in the API response.
 
 ## occupantsOrderReq (object)
-+ occupants (array [occupantInfoOrderReq]) - Contains the list of information for each guest in a room. Note that there must be at least one adult per room.<br><br>For example, if you searched for a room with 2 guests, namely guest1 and guest2, the `occupants` array will contain two objects. The first object will contain the type and age for guest1 and the second object will contain the type and age for guest2.<br><br><b>Note:</b> If you do not provide this field, then the `occupants` array is returned as empty array in the API response.
++ occupants (array [occupantInfoOrderReq],fixed-type) - Contains the list of information for each guest in a room. Note that there must be at least one adult per room.<br><br>For example, if you searched for a room with 2 guests, namely guest1 and guest2, the `occupants` array will contain two objects. The first object will contain the type and age for guest1 and the second object will contain the type and age for guest2.<br><br><b>Note:</b> If you do not provide this field, then the `occupants` array is returned as empty array in the API response.
 
 ## occupantInfoOrderReq (object)
 + type (enum) - Type of guest.
@@ -185,7 +185,7 @@
 + countryCode: `US` (string) - Includes hotel inventory and rates from suppliers that are configured for the country (<a target="_blank" href="../reference-reads#countrycodes">2-character ISO country code</a>) specified in this field. This field is specifically useful when you want to retrieve hotel inventory and rates from region-based suppliers.<br><br><b>Note:</b> If you do not provide this field, then the `countryCode` field is not returned in the API response.
 
 ## relevanceCriteriaOrderReq
-+ relevanceCriteria (array[relevanceCriteriaInfoOrderReq]) - Contains information about the relevance criteria that is used for calculating the <@ recommendation_score_small_popup @>. Consider a scenario where you want to search for hotels in Paris and you set the relevance criteria to `Fontainebleau`, based on city. In this case, the recommendation score of the hotels located in Fontainebleau is weighted higher than that of the hotels located in Paris.<br><br><b>Note:</b> If you do not provide this field, then the `relevanceCriteria` array is not returned in the API response.
++ relevanceCriteria (array[relevanceCriteriaInfoOrderReq],fixed-type) - Contains information about the relevance criteria that is used for calculating the <@ recommendation_score_small_popup @>. Consider a scenario where you want to search for hotels in Paris and you set the relevance criteria to `Fontainebleau`, based on city. In this case, the recommendation score of the hotels located in Fontainebleau is weighted higher than that of the hotels located in Paris.<br><br><b>Note:</b> If you do not provide this field, then the `relevanceCriteria` array is not returned in the API response.
 
 ## relevanceCriteriaInfoOrderReq
 + keyword: `Buenos Aires` (string) -  The keyword based on which the <@ recommendation_score_small_popup @> is calculated.
@@ -322,7 +322,7 @@
 + ratingDescription: `good` - Description for the rating.<br><br><b>Note:</b> If you do not provide this field, then the `ratingDescription` field is not returned in the API response. 
 
 ## trustYouBadgesOrderReq
-+ badges (array [badgeInfoOrderReq]) - Contains the list of <@ badges_popup @> for a hotel with badge details, as provided by <a target="_blank" href="https://www.trustyou.com/">TrustYou</a>.<br><br><b>Note:</b> If you do not provide this field, then the `badges` array is not returned in the API response. 
++ badges (array [badgeInfoOrderReq],fixed-type) - Contains the list of <@ badges_popup @> for a hotel with badge details, as provided by <a target="_blank" href="https://www.trustyou.com/">TrustYou</a>.<br><br><b>Note:</b> If you do not provide this field, then the `badges` array is not returned in the API response. 
 
 ## badgeInfoOrderReq
 + badgeDescription: `Excellent Family Hotel` - Description for the <@ badge_popup @>.<br><br><b>Note:</b> If you do not provide this field, then the `badgeDescription` field is not returned in the API response.  
@@ -354,7 +354,7 @@
 + description: `Pleasant Hotel Grounds` - Description of the sentiment, as provided by <a target="_blank" href="https://www.trustyou.com/">TrustYou</a>.<br><br><b>Note:</b> If you do not provide this field, then the `description` field is not returned in the API response. 
 
 ## tripMetaReviewsOrderReq
-+ tripMetaReviews (array [tripMetaReviewsInfoOrderReq]) - Contains the list of customer reviews for the hotel on various <a target="_blank" href="../reference-reads#categoriesTrustYou">categories</a>, based on the type of trip.<br><br><b>Note:</b> If you do not provide this field, then the `tripMetaReviews` array is not returned in the API response. 
++ tripMetaReviews (array [tripMetaReviewsInfoOrderReq],fixed-type) - Contains the list of customer reviews for the hotel on various <a target="_blank" href="../reference-reads#categoriesTrustYou">categories</a>, based on the type of trip.<br><br><b>Note:</b> If you do not provide this field, then the `tripMetaReviews` array is not returned in the API response. 
 
 ## tripMetaReviewsInfoOrderReq
 + include tripTypeOrderReq
@@ -370,7 +370,7 @@
   + Solo 
 
 ## categoryReviewsOrderReq
-+ categoryReviews (array[categoryInfoOrderReq]) - Contains the list of the customer reviews provided for the hotel on various <a target="_blank" href="https://www.trustyou.com/">TrustYou</a> <a href="../reference-reads#categoriesTrustYou" target="_blank">categories</a> based on the type of trip.<br><br><b>Note:</b> If you do not provide this field, then the `categoryReviews` array is not returned in the API response.
++ categoryReviews (array[categoryInfoOrderReq],fixed-type) - Contains the list of the customer reviews provided for the hotel on various <a target="_blank" href="https://www.trustyou.com/">TrustYou</a> <a href="../reference-reads#categoriesTrustYou" target="_blank">categories</a> based on the type of trip.<br><br><b>Note:</b> If you do not provide this field, then the `categoryReviews` array is not returned in the API response.
 
 ## categoryInfoOrderReq
 + include categoryNameOrderReq
@@ -384,7 +384,7 @@
 + rating: 8.9 (number) - Rating (1-10) of the hotel in that category, as obtained by the content provider. This is calculated based on the rating from <a target="_blank" href="https://www.trustyou.com/">TrustYou</a>.<br><br><b>Note:</b> If you do not provide this field, then the `rating` field is set to `0`.<br><br><b>Format:</b> Decimal 
 
 ## summarySentencesOrderReq
-+ summarySentences (array [summaryInfoOrderReq]) - Contains the list of summarized customer reviews for this category.<br><br><b>Note:</b> If you do not provide this field, then the `summarySentences` array is not returned in the API response.
++ summarySentences (array [summaryInfoOrderReq],fixed-type) - Contains the list of summarized customer reviews for this category.<br><br><b>Note:</b> If you do not provide this field, then the `summarySentences` array is not returned in the API response.
 
 ## summaryInfoOrderReq
 + description: `Great location, close to the train station.` - Customer review for this category.<br><br><b>Note:</b> If you do not provide this field, then the `description` field is not returned in the API response. 
@@ -402,7 +402,7 @@
 + rating: 7.7 (number) - Rating (1-10) for the hotel, as provided by the content provider. This is calculated based on the rating provided by <a target="_blank" href="https://www.trustyou.com/">TrustYou</a>.<br><br><b>Note:</b> If you do not provide this field, then the `rating` field is set to `0`.<br><br><b>Format:</b> Decimal
 
 ## overallReviewsOrderReq
-+ overallReviews (array [overallReviewsInfoOrderReq]) - Contains the list of the customer reviews provided for the hotel on various <a target="_blank" href="https://www.trustyou.com/">TrustYou</a> <a href="../reference-reads#categoriesTrustYou" target="_blank">categories</a>, irrespective of the trip type.<br><br><b>Note:</b> If you do not provide this field, then the `overallReviews` array is not returned in the API response. 
++ overallReviews (array [overallReviewsInfoOrderReq],fixed-type) - Contains the list of the customer reviews provided for the hotel on various <a target="_blank" href="https://www.trustyou.com/">TrustYou</a> <a href="../reference-reads#categoriesTrustYou" target="_blank">categories</a>, irrespective of the trip type.<br><br><b>Note:</b> If you do not provide this field, then the `overallReviews` array is not returned in the API response. 
 
 ## overallReviewsInfoOrderReq
 + include categoryNameOrderReq
@@ -438,19 +438,19 @@
 + attributes (imageAttributes) - Contains the list of additional attributes for the <@ hero_image @>.
 
 ## hoteldescriptionsOrderReq
-+ descriptions (array[descriptions]) - Contains the list of descriptive information about the hotel property.<br><br><b>Note:</b> If you do not provide this field, then the `descriptions` array is not returned in the API response.
++ descriptions (array[descriptions],fixed-type) - Contains the list of descriptive information about the hotel property.<br><br><b>Note:</b> If you do not provide this field, then the `descriptions` array is not returned in the API response.
 
 ## hotelactivitiesOrderReq
-+ activities (array[activities]) -  Contains the list of <@ activities @> that are available in and around the hotel.<br><br><b>Note:</b> If you do not provide this field, then the `activities` array is not returned in the API response.
++ activities (array[activities],fixed-type) -  Contains the list of <@ activities @> that are available in and around the hotel.<br><br><b>Note:</b> If you do not provide this field, then the `activities` array is not returned in the API response.
 
 ## hotelareaAttractionsOrderReq
-+ areaAttractions (array[areaAttractions]) - Contains the list of nearby attractions.<br><br><b>Note:</b> If you do not provide this field, then the `areaAttractions` array is not returned in the API response.
++ areaAttractions (array[areaAttractions],fixed-type) - Contains the list of nearby attractions.<br><br><b>Note:</b> If you do not provide this field, then the `areaAttractions` array is not returned in the API response.
 
 ## hotelpoliciesOrderReq
-+ policies (array[policies]) - Contains the list of applicable hotel policies.<br><br><b>Note:</b> If you do not provide this field, then the `policies` array is not returned in the API response.
++ policies (array[policies],fixed-type) - Contains the list of applicable hotel policies.<br><br><b>Note:</b> If you do not provide this field, then the `policies` array is not returned in the API response.
 
 ## hotelamenitiesOrderReq
-+ amenities (array[amenitiesOrderReq]) -  Contains the list of <@ amenitiessmall @> that are available in the room.<br><br><b>Note:</b> If you do not provide this field, then the `amenities` array is not returned in the API response.
++ amenities (array[amenitiesOrderReq],fixed-type) -  Contains the list of <@ amenitiessmall @> that are available in the room.<br><br><b>Note:</b> If you do not provide this field, then the `amenities` array is not returned in the API response.
 
 ## amenitiesOrderReq
 + name: `Internet Access` - Name of the amenity as provided by the <@ supplier @>.
@@ -460,7 +460,7 @@
 + id: `3` - Unique ID that is assigned for the master amenity.<br><br>To know the master amenity mapped to the master amenity ID, <a href="../reference-reads#masterAmenities" target="_blank">see the standard list of master amenities</a>.
 
 ## hotelcheckinCheckoutOrderReq
-+ checkinCheckoutPolicy (array[checkinCheckoutPolicy]) - Contains the list of the standard check-in and check-out timings for the hotel.<br><br><b>Note:</b> If you do not provide this field, then the `checkinCheckoutPolicy` array is not returned in the API response.
++ checkinCheckoutPolicy (array[checkinCheckoutPolicy],fixed-type) - Contains the list of the standard check-in and check-out timings for the hotel.<br><br><b>Note:</b> If you do not provide this field, then the `checkinCheckoutPolicy` array is not returned in the API response.
 
 ## hotelhotelChainOrderReq
 + hotelChain (hotelChain) - Contains information about the <@ hotelchain @> to which this hotel belongs.<br><br><b>Note:</b> If you do not provide this field, then the `hotelChain` field is not returned in the API response.
@@ -1054,7 +1054,7 @@
 + unit: `points` (string, required) - Indicates the currency that is associated with the <@ loyalty_program_popup @>. For example, points and miles. 
 
 ## supplierFOPReq 
-+ paymentMethods (array [paymentMethodDetails]) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If the `/paymentMethods[]/type` field is set to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If the `/paymentMethods[]/type` field is set to `Cash`, then you must not provide the `/paymentMethods[]/card` object.</li><li>If you do not provide this field, then the `paymentMethods` array is not returned in the API response.</li></ul>
++ paymentMethods (array [paymentMethodDetails],fixed-type) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If the `/paymentMethods[]/type` field is set to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If the `/paymentMethods[]/type` field is set to `Cash`, then you must not provide the `/paymentMethods[]/card` object.</li><li>If you do not provide this field, then the `paymentMethods` array is not returned in the API response.</li></ul>
 
 ## paymentMethodDetails
 + type: `Card` (enum, required)- Indicates the mode of payment.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If you set the `/paymentMethods[]/type` to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If you set the `/paymentMethods[]/type` to `Cash`, then the `/paymentMethods[]/card` object is optional.</li></ul>
@@ -1904,13 +1904,13 @@
 + heroImage (heroImageHotelRoomInfoOrderResp) - Contains information about the <@ hero_image @> for the room.<br><br><b>Note:</b> If this field is not provided, at the time of order creation, then `heroImage` object is not returned in the API response.
 
 ## roomthumbnailsOrderResp
-+ thumbnails (array [roomThumbnailsInfoOrderResp]) - Contains the list of <@ thumbnail @> images for the room. A thumbnail image is usually smaller in size when compared to a full-size image.<br><br><b>Note:</b> If this field is not provided, at the time of order creation, then `thumbnails` array is returned as an empty array in the API response.
++ thumbnails (array [roomThumbnailsInfoOrderResp],fixed-type) - Contains the list of <@ thumbnail @> images for the room. A thumbnail image is usually smaller in size when compared to a full-size image.<br><br><b>Note:</b> If this field is not provided, at the time of order creation, then `thumbnails` array is returned as an empty array in the API response.
 
 ## roomImagesOrderResp
-+ images (array[hotelRoomImagesInfoOrderResp]) - Contains the list of full-size images for the room.<br><br><b>Note:</b> If this field is not provided, at the time of order creation, then `images` array is returned as an empty array in the API response.
++ images (array[hotelRoomImagesInfoOrderResp],fixed-type) - Contains the list of full-size images for the room.<br><br><b>Note:</b> If this field is not provided, at the time of order creation, then `images` array is returned as an empty array in the API response.
 
 ## supplierRoomMappingInfoOrderResp
-+ supplierRoomMappingInfo (array [supplierRoomMappingOrderResp]) - Contains the list of supplier room mapping information for this room.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `supplierRoomMappingInfo` array is not returned in the API response. 
++ supplierRoomMappingInfo (array [supplierRoomMappingOrderResp],fixed-type) - Contains the list of supplier room mapping information for this room.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `supplierRoomMappingInfo` array is not returned in the API response. 
 
 ## supplierRoomMappingOrderResp
 + supplierFamily: `epsrapid` - Name of the supplier family that is mapped to this room.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `supplierFamily` field is not returned in the API response.  
@@ -1927,9 +1927,9 @@
 + bookingInfo (bookOrderInfoOrderResp) -  Contains information about the booking details which includes the selected payment options, the guest information, and the contact information of the person who is making the booking.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `bookingInfo` object is not returned in the API response.
 
 ## bookOrderInfoOrderResp
-+ guests (array[guestOrderResp]) - Contains the list of guest information (occupants) for the room that the customer wants to book.
++ guests (array[guestOrderResp],fixed-type) - Contains the list of guest information (occupants) for the room that the customer wants to book.
 + bookingContact (bookingContactOrderResp) - Contains the contact information, nationality, and date of birth of the person who is making the booking.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `bookingContact` object is not returned in the API response.
-+ selectedPaymentOptions (array [paymentOptionInfoOrderResp]) - Contains the list of selected payment options that the customer wants to avail to pay for the room.<br><br>
++ selectedPaymentOptions (array [paymentOptionInfoOrderResp],fixed-type) - Contains the list of selected payment options that the customer wants to avail to pay for the room.<br><br>
 <b>Notes:</b> 
   + Either the amount in cash, points, or a combination of both the amount in cash and points is returned within the `/selectedPaymentOptions` array.
   + If you do not provide this field, at the time of order creation, then the `selectedPaymentOptions` array is not returned in the API response.
@@ -1987,7 +1987,7 @@
 + unit: `points` (string, required) - Indicates the currency that is associated with the <@ loyalty_program_popup @>. For example, points and miles. 
 
 ## supplierFormOfPaymentOrderResp
-+ paymentMethods (array [paymentMethodDetailsOrderResp]) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `paymentMethods` array is not returned in the API response. To update a new payment method, you must call the `Set Payment Methods` API.
++ paymentMethods (array [paymentMethodDetailsOrderResp],fixed-type) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `paymentMethods` array is not returned in the API response. To update a new payment method, you must call the `Set Payment Methods` API.
 
 ## paymentMethodDetailsOrderResp
 + type: `card` (enum, required)- Indicates the mode of payment.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If  the `/paymentMethods[]/type` returns as `Card` or `OUC`, then the card details are returned within the `/paymentMethods[]/card` object.</li><li>If the `/paymentMethods[]/type` returns as `Cash`, then the `/paymentMethods[]/card` object is optional.</li></ul>
@@ -2041,8 +2041,8 @@
 + include hotelConfirmationNumberOrderResp
 + include cancellationTokenOrderResp
 + roomDetails (roomDetailsConfirmInfoResp) - Contains the list of room-wise confirmation details.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `roomDetails` object is not returned in the API response.
-+ errors (array [errorsOrderResp]) - Contains the list of errors that occur during the booking process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `errors` object is not returned in the API response.
-+ warnings (array [warningsOrderResp]) - Contains the list of warnings that appear during the booking process.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `warnings` object is not returned in the API response.
++ errors (array [errorsOrderResp],fixed-type) - Contains the list of errors that occur during the booking process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `errors` object is not returned in the API response.
++ warnings (array [warningsOrderResp],fixed-type) - Contains the list of warnings that appear during the booking process.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `warnings` object is not returned in the API response.
 
 ## supplierConfirmationNumberOrderResp
 + supplierConfirmationNumber: `309755104` (string, nullable) - Supplier confirmation number for the booking.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `supplierConfirmationNumber` field is not returned in the API response.
@@ -2074,8 +2074,8 @@
 + include supplierCancellationNumberOrderResp
 + include hotelCancellationNumberOrderResp
 + roomDetails (roomCancelDetailsInfoResp) - Contains information about the cancellation details of the room booking.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `roomDetails` object is not returned in the API response.
-+ errors (array [errorsOrderReq]) - Contains the list of errors that occur during the cancellation process. For example, if the  cancellation fails, the `errors` array lists the appropriate error messages.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `errors` object is not returned in the API response.
-+ warnings (array [warningsOrderReq]) - Contains the list of warnings that appear during the cancellation process.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `warnings` object is not returned in the API response.
++ errors (array [errorsOrderReq],fixed-type) - Contains the list of errors that occur during the cancellation process. For example, if the  cancellation fails, the `errors` array lists the appropriate error messages.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `errors` object is not returned in the API response.
++ warnings (array [warningsOrderReq],fixed-type) - Contains the list of warnings that appear during the cancellation process.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `warnings` object is not returned in the API response.
 
 ## supplierCancellationNumberOrderResp
 + supplierCancellationNumber: `309755104` (string, nullable) - Supplier cancellation number for the booking.<br><br><b>Note:</b> If you do not provide this field, at the time of order creation, then the `supplierCancellationNumber` field is not returned in the API response.
@@ -2149,10 +2149,10 @@
 + include cancellationTokenCFRMOrderReq
 
 ## errorsCFRMOrderReq
-+ errors (array [errorsOrderReq]) - Contains the list of errors that occur during the booking process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.
++ errors (array [errorsOrderReq],fixed-type) - Contains the list of errors that occur during the booking process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.
 
 ## warningsCFRMOrderReq
-+ warnings (array [warningsOrderReq]) - Contains the list of warnings that appear during the booking process.
++ warnings (array [warningsOrderReq],fixed-type) - Contains the list of warnings that appear during the booking process.
 
 ## cancelOrderReq
 + cancellationDetails (cancellationDetailsCFRMOrderReq, required) - Contains the cancellation details of the room booking. 
@@ -2182,10 +2182,10 @@
 + include hotelCancellationNumberCFRMOrderReq
 
 ## errorsCancelOrderReq
-+ errors (array [errorsOrderReq]) - Contains the list of errors that occur during the cancellation process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.
++ errors (array [errorsOrderReq],fixed-type) - Contains the list of errors that occur during the cancellation process. For example, if the  booking fails, the `errors` array lists the appropriate error messages.
 
 ## warningsCancelOrderReq
-+ warnings (array [warningsOrderReq]) - Contains the list of warnings that appear during the cancellation process.
++ warnings (array [warningsOrderReq],fixed-type) - Contains the list of warnings that appear during the cancellation process.
 
 ## reportingFieldOrderResponse
 + reportingFields (fieldsOrderResp) - Contains the reporting fields that can be used for any business-related purposes, such as to pass the booking token for reporting purpose.<br><br>
@@ -2209,7 +2209,7 @@
 + include paymentMethodOrderReq
 
 ## paymentMethodOrderReq
-+ paymentMethods (array [paymentMethodDetailsResp], required) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If the `/paymentMethods[]/type` field is set to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If the `/paymentMethods[]/type` field is set to `Cash`, then you must not provide the `/paymentMethods[]/card` object.</li></ul>
++ paymentMethods (array [paymentMethodDetailsResp],fixed-type, required) - Contains the list of payment methods used to pay for the booking. We support payments made by cash, credit card, or one-use card (OUC). <br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If the `/paymentMethods[]/type` field is set to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If the `/paymentMethods[]/type` field is set to `Cash`, then you must not provide the `/paymentMethods[]/card` object.</li></ul>
 
 ## paymentMethodDetailsResp
 + type: `Card` (enum, required)- Indicates the mode of payment.<br><br><b>Notes:</b><ul style="list-style-type:disc"><li>If you set the `/paymentMethods[]/type` to `Card` or `OUC`, then you must provide the card details within the `/paymentMethods[]/card` object.</li><li>If you set the `/paymentMethods[]/type` to `Cash`, then the `/paymentMethods[]/card` object is optional.</li></ul>
@@ -2277,7 +2277,7 @@
 + end: `{dateTime|YYYY-MM-DDTHH:mm:ssZ|33 0}` (string, required) - Check-out date or the end date of the stay duration.<br><br><b>Format:</b> YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ<br><br><a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a>
 
 ## paymentOptionsEOReq
-+ paymentOptions (array [paymentOptionsEOReqInfo]) - Contains the list of selected payment options that the customer wants to avail to pay for the room.<br><br>
++ paymentOptions (array [paymentOptionsEOReqInfo],fixed-type) - Contains the list of selected payment options that the customer wants to avail to pay for the room.<br><br>
 <b>Notes:</b><ul style="list-style-type:disc"><li>In case of hotel bookings, you can only provide one payment option within the `/paymentOptions` array.</li><li>Depending on the selected reward, either the amount in cash, points, or a combination of both the amount in cash and points must be provided within the `/paymentOptions` array.</li><li>If updated, you can view the new payment options in the `selectedPaymentOptions` array in the `Get Order` API response.</li></ul>
 
 ## paymentOptionsEOReqInfo
