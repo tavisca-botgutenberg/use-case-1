@@ -108,7 +108,7 @@
 + include travellerCountryCodeOfResidenceOrderReq
 + include travellerNationalityCodeOrderReq
 + include includeHotelsWithoutRatesOrderReq
-+ hotelIds: (array [string]) - Contains the list of hotel IDs for the hotels where you want to search.<br><br><b>Note:</b> This field is optional and can be specified only in case of search by hotel IDs. 
++ hotelIds: (array [string],fixed-type) - Contains the list of hotel IDs for the hotels where you want to search.<br><br><b>Note:</b> This field is optional and can be specified only in case of search by hotel IDs. 
 + bounds (boundsRadialOrderReq) - Contains information about the region where the customer wants to search for hotels.<br><br><b>Note:</b> If specified at the time of order creation, the `bounds` object provided can be different depending on the type of search performed. For better understanding, see the JSON samples for the following search use cases:<br><ul style="list-style-type:disc"><li><@ boundsradial @></li><li><@ boundsrectangular @></li></ul>
 + include relevanceCriteriaOrderReq
 
